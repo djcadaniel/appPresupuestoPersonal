@@ -56,7 +56,8 @@ export const presupuestReducer = (
   if( action.type === 'close-modal' ){
     return {
       ...state,
-      modal: false
+      modal: false,
+      editingId: ''
     }
   }
 
@@ -87,7 +88,9 @@ export const presupuestReducer = (
   if(action.type === 'update-expense'){
     return{
       ...state,
-      expenses: [...state.expenses, action.payload.expense]
+      expenses: state.expenses.map(expense => expense.id === action.payload.expense.id ? action.payload.expense : expense),
+      modal: false,
+      editingId: ''
     }
   }
 

@@ -49,7 +49,7 @@ export default function ExpenseForm() {
     }
     
     if(state.editingId){
-      
+      dispatch({type:'update-expense', payload:{expense: {id: state.editingId, ...expense}}})
     }else{
       dispatch({type: 'add-expense', payload: {expense}})
     }
@@ -68,9 +68,9 @@ export default function ExpenseForm() {
       <legend
         className='upppercase text-center text-2xl border-b-4 border-[#50BFBB] py-2 text-white font-changa'
       >
-        Nuevo gasto
-        { error && <ErrorMessage>{error}</ErrorMessage> }
+        {state.editingId ? 'Actualizar gasto' : 'Nuevo gasto'}
       </legend>
+      { error && <ErrorMessage>{error}</ErrorMessage> }
       <div className='flex flex-col gap-2'>
         <label 
           htmlFor="expenseName"
@@ -148,7 +148,7 @@ export default function ExpenseForm() {
       <input 
         type="submit"
         className='bg-gradient-to-r from-[#50BFBB] to-blue-500 cursor-pointer w-full p-2 text-white uppercase font-bold rounded-lg text-center ouline-none transition duration-300 ease-in-out focus:outline-double focus:outline-[#50BFBB]'
-        value='Registrar gasto' 
+        value={state.editingId ? 'Guardar cambios' : 'Registrar gasto'}
       />
     </form>
   )
