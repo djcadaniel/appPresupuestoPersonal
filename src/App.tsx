@@ -3,6 +3,8 @@ import PresupuestoForm from "./components/PresupuestoForm"
 import logo from '/img/logo.png'
 import { usePresupuest } from "./hooks/usePresupuest"
 import PresupuestTracker from "./components/PresupuestTracker";
+import PresupuestModal from "./components/PresupuestModal";
+import ExpenseList from "./components/ExpenseList";
 
 function App() {
 
@@ -18,6 +20,14 @@ function App() {
       <div className="max-w-7xl min-w-[420px] mx-auto p-3 md:px-44 text-white">
         {isValidPresupuest ? <PresupuestTracker/> : <PresupuestoForm/>}
       </div>
+      {
+        isValidPresupuest && (
+          <main className="max-w-7xl mx-auto py-10">
+            <ExpenseList />
+            <PresupuestModal />
+          </main>
+        )
+      }
     </>
   )
 }

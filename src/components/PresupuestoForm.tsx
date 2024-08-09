@@ -49,7 +49,7 @@ export default function PresupuestoForm() {
         <div className="flex flex-col items-start space-y-5 p-5">
           <label 
             htmlFor="name"
-            className="text-[1rem] md:text-[1.2rem] text-[#757569] text-center"
+            className="text-[1rem] md:text-[1.2rem] text-gray-400 text-center font-changa"
           >
             Nombre:
           </label>
@@ -68,7 +68,7 @@ export default function PresupuestoForm() {
         <div className="flex flex-col items-start space-y-5 p-5">
           <label 
             htmlFor="presupuest"
-            className="text-[1rem] md:text-[1.2rem] text-[#757569] text-center"
+            className="text-[1rem] md:text-[1.2rem] text-gray-400 text-center font-changa"
           >
             Presupuesto:
           </label>
