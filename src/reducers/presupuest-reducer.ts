@@ -17,13 +17,20 @@ export type PresupuestState = {
   editingId: Expense['id']
 }
 
+const initialPresupuest = ():Presupuest => {
+  const localStoragePresupuest = localStorage.getItem('presupuest');
+  return localStoragePresupuest ? JSON.parse(localStoragePresupuest) : {}
+}
+
+const localStorageExpenses = ():Expense[] => {
+  const localStorageExpenses = localStorage.getItem('expenses')
+  return localStorageExpenses ? JSON.parse(localStorageExpenses) : []
+}
+
 export const intialState: PresupuestState = {
-  presupuest: {
-    name: '',
-    monto: 0
-  },
+  presupuest: initialPresupuest(),
   modal: false,
-  expenses: [],
+  expenses: localStorageExpenses(),
   editingId: ''
 }
 

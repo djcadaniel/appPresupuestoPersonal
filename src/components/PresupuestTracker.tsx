@@ -1,7 +1,12 @@
 import { IoReloadCircle } from "react-icons/io5";
 import PresupuestAmount from "./PresupuestAmount";
+import { usePresupuest } from "../hooks/usePresupuest";
 
 export default function PresupuestTracker() {
+
+  const {state, totalGastos, disponible} = usePresupuest();
+  
+
   return (
     <div className="relative grid grid-cols-1">
       <div className="grid grid-cols-5 gap-5 items-center justify-center w-full">
@@ -11,15 +16,15 @@ export default function PresupuestTracker() {
         <div className="col-start-3 col-span-4 gap-3 p-5 rounded-lg bg-[#2B2B3B] h-full flex flex-col items-center justify-center shadow-md shadow-gray-600">
           <PresupuestAmount 
             label = 'Presupuesto'
-            amount = {300}
+            amount = {state.presupuest.monto}
           />
           <PresupuestAmount 
             label = 'Disponible'
-            amount = {200}
+            amount = {disponible}
           />
           <PresupuestAmount 
             label = 'Gastos'
-            amount = {100}
+            amount = {totalGastos}
           />
         </div>
       </div>

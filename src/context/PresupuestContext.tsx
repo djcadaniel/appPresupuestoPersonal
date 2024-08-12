@@ -4,6 +4,8 @@ import { intialState, PresupuestAction, presupuestReducer, PresupuestState } fro
 type PresupuestContextProps = {
   state: PresupuestState,
   dispatch: Dispatch<PresupuestAction>
+  totalGastos: number
+  disponible: number
 }
 
 type PresupuestProviderProps = {
@@ -13,14 +15,19 @@ type PresupuestProviderProps = {
 export const PresupuestContext = createContext<PresupuestContextProps>({} as PresupuestContextProps)
 
 export const PresupuestProvider = ({children}: PresupuestProviderProps) => {
-  
+
   const [state, dispatch] = useReducer(presupuestReducer, intialState)
+  
+  const totalGastos = state.expenses.reduce((total, gasto)=> gasto.price + total, 0);
+  const disponible = state.presupuest.monto - totalGastos;
 
   return (
     <PresupuestContext.Provider
       value={{
         state,
-        dispatch
+        dispatch,
+        totalGastos,
+        disponible
       }}
     >
       {children}
