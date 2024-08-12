@@ -15,7 +15,7 @@ export default function PresupuestModal() {
           type="button"
           onClick={()=> dispatch({type:'show-modal'})}
         >
-          <PlusCircleIcon className='w-16 h-16 text-[#4992dc] hover:text-[#1fbcc8] rounded-full transition duration-500 ease-in-out' />
+          <PlusCircleIcon className='w-12 h-12 md:w-16 md:h-16 text-[#4992dc] hover:text-[#1fbcc8] rounded-full transition duration-500 ease-in-out' />
         </button>
       </div>
 

@@ -51,17 +51,17 @@ export default function ExpenseDetail({expense}: ExpenseDetailProps) {
         leadingActions={leadingActions()}
         trailingActions={trailingActions()}
       >
-        <div className='bg-white shadow-lg p-10 w-full border-b border-gray-200 flex gap-5 items-center'>
+        <div className='bg-[#2B2B3B] shadow-lg p-5 md:p-10 w-full border-b border-gray-600 flex gap-5 items-center rounded-md text-white mb-5'>
           <div>
             <img 
               src={`img/icono_${categoryImg.icon}.svg`} 
               alt="ícono de gasto"
-              className="w-20"
+              className="w-14 md:w-20"
             />
           </div>
           <div>
-            <p>{expense.expenseName}</p>
-            <p className="text-slate-600 text-sm">{formatDate(expense.date!.toString())}</p>
+            <p className="text-white">{expense.expenseName}</p>
+            <p className="text-gray-300 text-sm">{formatDate(expense.date!.toString())}</p>
           </div>
           <PriceDisplay
             price={expense.price}

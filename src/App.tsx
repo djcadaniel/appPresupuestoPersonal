@@ -22,7 +22,7 @@ function App() {
       </div>
       {
         isValidPresupuest && (
-          <main className="max-w-7xl mx-auto py-10">
+          <main className="max-w-7xl mx-auto md:py-10">
             <ExpenseList />
             <PresupuestModal />
           </main>
