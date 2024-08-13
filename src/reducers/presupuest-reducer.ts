@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid'
-import { DraftExpense, Expense, Presupuest } from "../types"
+import { Category, DraftExpense, Expense, Presupuest } from "../types"
 
 export type PresupuestAction = 
   { type: 'add-presupuest', payload: {presupuest: Presupuest} } |
@@ -8,13 +8,16 @@ export type PresupuestAction =
   { type: 'add-expense', payload:{expense: DraftExpense} } |
   { type: 'remove-expense', payload: {id: Expense['id']} } |
   { type: 'get-expense-by-id', payload: {id: Expense['id']} } |
-  { type: 'update-expense', payload: {expense: Expense} }
+  { type: 'update-expense', payload: {expense: Expense} } |
+  { type: 'reset-app' } |
+  { type: 'add-filter-category', payload: {id: Category['id']} }
 
 export type PresupuestState = {
   presupuest: Presupuest
   modal: boolean
   expenses: Expense[]
   editingId: Expense['id']
+  currentCategory: Category['id']
 }
 
 const initialPresupuest = ():Presupuest => {
@@ -31,7 +34,8 @@ export const intialState: PresupuestState = {
   presupuest: initialPresupuest(),
   modal: false,
   expenses: localStorageExpenses(),
-  editingId: ''
+  editingId: '',
+  currentCategory: ''
 }
 
 const createExpense = (draftExpense: DraftExpense) => {
@@ -98,6 +102,24 @@ export const presupuestReducer = (
       expenses: state.expenses.map(expense => expense.id === action.payload.expense.id ? action.payload.expense : expense),
       modal: false,
       editingId: ''
+    }
+  }
+
+  if(action.type === 'reset-app'){
+    return{
+      ...state,
+      presupuest: {
+        name: '',
+        monto: 0
+      },
+      expenses: []
+    }
+  }
+
+  if(action.type === 'add-filter-category'){
+    return {
+      ...state,
+      currentCategory: action.payload.id
     }
   }
 
